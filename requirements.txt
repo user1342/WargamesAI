@@ -4,7 +4,6 @@ datasets
 langchain 
 sentence-transformers
 fpdf
-argparse
 setuptools
 huggingface_hub
 numpy
