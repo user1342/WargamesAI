@@ -14,6 +14,5 @@ setup(
         "License :: OSI Approved :: GPL-3.0",
         "Operating System :: Ubuntu",
     ],
-    python_requires=">=3.8",  # Minimum Python version required
     install_requires=requirements,  # Dependencies from requirements.txt
 )
