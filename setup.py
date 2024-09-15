@@ -5,8 +5,8 @@ with open('requirements.txt', 'r') as f:
     requirements = f.read().splitlines()
 
 setup(
-    name="Tomato",  # Name of the tool/package
-    version="0.2.1",  # Current version
+    name="WargamesAI",  # Name of the tool/package
+    version="0.0.1",  # Current version
     url="https://github.com/user1342/WargamesAI",
     packages=find_packages(),  # Automatically find package directories
     classifiers=[
