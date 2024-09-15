@@ -18,13 +18,12 @@ import random
 # Suppress unnecessary warnings
 hf_logging.set_verbosity_error()
 
-UNSLOTH_MODELS = ["unsloth/Llama-3.1-Storm-8B",
+UNSLOTH_MODELS = ["unsloth/Llama-3.1-Storm-8B-bnb-4bit",
                   "unsloth/mistral-7b-instruct-v0.3",
                   "unsloth/Mistral-Nemo-Base-2407-bnb-4bit",
                   "unsloth/mistral-7b-v0.3-bnb-4bit",
                   "unsloth/gemma-7b-bnb-4bit",
                   "unsloth/llama-2-7b-bnb-4bit"
-                  "unsloth/Llama-3.1-Storm-8B-bnb-4bit",
                   "unsloth/llama-3-8b-Instruct-bnb-4bit",
                   "unsloth/gemma-2-9b-it-bnb-4bit",
                   "unsloth/Phi-3-mini-4k-instruct-bnb-4bit",
@@ -32,8 +31,7 @@ UNSLOTH_MODELS = ["unsloth/Llama-3.1-Storm-8B",
                   "unsloth/Qwen2-7B-Instruct-bnb-4bit",
                   "unsloth/Phi-3.5-mini-instruct-bnb-4bit",
                   "unsloth/Qwen2-Math-7B-Instruct",
-                  "unsloth/Starling-LM-7B-beta",
-                  "unsloth/solar-10.7b-bnb-4bit"]
+                  "unsloth/Starling-LM-7B-beta"]
 
 class EasyLLM:
     """
