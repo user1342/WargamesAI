@@ -160,6 +160,18 @@ Using PDF Bios and PDF Rules
 WargamesAI allows you to import bios and rules from PDFs, making it easier to manage detailed information about agents and game settings.
 ```
 
+## 🤖 Models
+At current, the following models have been tested with WargamesAI:
+- unsloth/Llama-3.1-Storm-8B-bnb-4bit
+- unsloth/mistral-7b-instruct-v0.3
+- unsloth/llama-3-8b-Instruct-bnb-4bit
+- unsloth/gemma-2-9b-it-bnb-4bit
+- unsloth/Phi-3-mini-4k-instruct-bnb-4bit
+- unsloth/Phi-3-medium-4k-instruct-bnb-4bit
+- unsloth/Qwen2-7B-Instruct-bnb-4bit
+- unsloth/Phi-3.5-mini-instruct-bnb-4bit
+- unsloth/Qwen2-Math-7B-Instruct
+
 # 🙏 Contributions
 WargamesAI is an open-source project and welcomes contributions from the community. If you would like to contribute to WargamesAI, please follow these guidelines:
 
