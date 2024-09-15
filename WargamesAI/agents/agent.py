@@ -107,10 +107,7 @@ class Agent:
             self.llm.generate_json_prompt(
                 json_schemas.DefaultModel, f"What is this individual's disposition? Answer concisely. {pdf_data}"
             )
-        )
-
-        print(self._disposition)
-        exit()
+        )["RESPONSE"]
 
         self._empathy = self._empathy or self.llm.ask_question(
             self.llm.generate_json_prompt(
