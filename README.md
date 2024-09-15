@@ -82,7 +82,7 @@ Install the dependencies using:
 
 ```bash
 git clone https://github.com/user1342/WargamesAI.git
-cd tomato
+cd WargamesAI
 pip install -r requirements.txt
 pip install -e .
 ```
