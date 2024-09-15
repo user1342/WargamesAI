@@ -360,8 +360,8 @@ class Umpire:
 
     def produce_summary(self):
         actions = self.actions
-        rules = self._game.game_rules_text
-        players = self._game.teams
+        rules = self._game._game_rules_text
+        players = self._game._teams
         prompt = self.llm.generate_json_prompt(json_schemas.DefaultModel, f"Based on the below game actions and the following game rules and players, summarise the game. \n\n Actions: \n {actions}. \n \n Rules: {rules} \n \n Players: \n {players}")
         response = self.llm.ask_question(prompt)["RESPONSE"]
 
@@ -369,8 +369,8 @@ class Umpire:
     
     def deduce_winner(self):
         actions = self.actions
-        rules = self._game.game_rules_text
-        players = self._game.teams
+        rules = self._game._game_rules_text
+        players = self._game._teams
         prompt = self.llm.generate_json_prompt(json_schemas.WinModel, f"Based on the below game actions and the following game rules and players, Deduce the winner of the game. \n\n Actions: \n {actions}. \n \n Rules: {rules} \n \n Players: \n {players}")
         response = self.llm.ask_question(prompt)
 
