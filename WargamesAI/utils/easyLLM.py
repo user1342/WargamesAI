@@ -232,6 +232,7 @@ class EasyLLM:
 
         result = result.strip("\n").strip().replace("{ ","{").replace(" }","}").replace("   ","  ").replace("  "," ")
 
+        print(result)
         try:
             return json.loads(result)
         except:
