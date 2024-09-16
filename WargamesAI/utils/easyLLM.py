@@ -234,7 +234,7 @@ class EasyLLM:
             return json.loads(result)
         except:
             try:
-                return parse_llm_json(result)
+                return self.parse_llm_json(result)
             except:
                 return result
             
