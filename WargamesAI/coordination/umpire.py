@@ -280,6 +280,7 @@ class Umpire:
             if response["TARGETS"] == "Umpire":
                 umpire_turn = self._check_response(player_team, target_player, required_action, response)
                 final_responses.extend(self.engage_turn(umpire_turn))
+                print(umpire_turn)
 
         return final_responses
 
