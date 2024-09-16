@@ -20,7 +20,7 @@ class Agent:
         exercise_objectives=None,
         strategic_objectives=None,
         notes=None,
-        max_tokens=1000,
+        max_tokens=5000,
         is_human=False,
         model_name=None,
         bio_folder=".",

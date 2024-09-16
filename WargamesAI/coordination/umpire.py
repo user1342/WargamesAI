@@ -12,7 +12,7 @@ class Umpire:
         self,
         game,
         model_name=None,
-        max_tokens=2000,
+        max_tokens=5000,
     ):
         """
         Initializes the Umpire instance.
