@@ -298,7 +298,7 @@ class Umpire:
         """
         query = (
             f"The player '{player}' of team '{team}' was asked to perform the following: '{action}'. "
-            f"They responded with '{response}'. In line with the game rules, are there any follow-on actions required (e.g. sharing information with a player, etc)?"
+            f"They responded with '{response}'. In line with the game rules, are there any follow-on actions that you as Umpire need to take (e.g. sharing information with a player, etc)? If so return a turn for the Umpire."
         )
         further_actions = self.llm.ask_question(
             self.llm.generate_json_prompt(json_schemas.TurnModel, query)
