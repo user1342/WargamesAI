@@ -230,8 +230,14 @@ class EasyLLM:
         if reset_dialogue:
             self.reset_dialogue()
 
-        return result
-
+        try:
+            return json.loads(result)
+        except:
+            try:
+                return parse_llm_json(result)
+            except:
+                return result
+            
     def extract_roles_from_template(self, chat_template: str) -> List[str]:
         """
         Extracts roles used in the chat template.
