@@ -25,7 +25,7 @@ LLMs reason by predicting the most probable next word in a sequence based on the
 
 In the case of wargaming this means that LLMs can provide In the case of wargaming, this means that LLMs can provide valuable simulations and strategic analyses by generating plausible scenarios, potential outcomes, and tactical suggestions based on patterns learned from extensive military and historical data. However, while they can mimic human reasoning in crafting strategies and forecasting developments, they lack true understanding and cannot account for unpredictable human factors or novel situations without prior data representation. Therefore, their use in wargaming can augment human expertise but should not replace the nuanced judgment of experienced strategists.
 
-# 🎌 Scenario: Moroccan Crisis of 1905-1906
+# 🎌 Scenario: Moroccan Crisis Of 1905-1906
 This game focuses on the Moroccan Crisis of 1905-1906, a key event in the lead-up to World War I. Players represent the major powers involved, and their actions influence the diplomatic and military landscape of Europe. The game culminates in Germany's decision on whether to escalate the crisis or pursue diplomacy.
 
 <details>
@@ -95,7 +95,7 @@ The Moroccan Crisis is underway, with France asserting its influence, Germany ch
 
 </details>
 
-# 🪖 Scenario: Cold War tensions during 1983
+# 🪖 Scenario: Cold War Tensions During 1983
 This game focuses on the Cold War tensions during 1983, particularly surrounding NATO's Able Archer exercise and the Soviet Union's response. Players are split into two teams, each with a Military and an Economic Division. Actions taken by each division will shape the course of the game, with the Umpire controlling the flow of information. The game culminates in a final decision by the EAST Military Division on whether to escalate to nuclear conflict.
 
 <details>
@@ -155,7 +155,6 @@ pprint(umpire.deduce_winner())
 ```
 
 LLM Summarisation:
-```
 The game has seen several key actions taken by both the WEST and EAST sides: the WEST has focused on gathering intelligence, analyzing the economic stability of the Eastern Bloc, and implementing economic sanctions while reinforcing NATO positions, increasing military readiness, and conducting naval exercises; the EAST has responded with similar actions, including deploying additional air defense missiles, increasing trade with Warsaw Pact allies, and implementing public propaganda campaigns.
 
 </details>
