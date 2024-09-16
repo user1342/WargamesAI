@@ -28,6 +28,9 @@ In the case of wargaming this means that LLMs can provide In the case of wargami
 # 🎌 Scenario: Moroccan Crisis of 1905-1906
 This game focuses on the Moroccan Crisis of 1905-1906, a key event in the lead-up to World War I. Players represent the major powers involved, and their actions influence the diplomatic and military landscape of Europe. The game culminates in Germany's decision on whether to escalate the crisis or pursue diplomacy.
 
+<details>
+<summary>Code and LLM Summary</summary>
+
 ```python
 from WargamesAI.coordination import Umpire, Game, GameRunner
 from WargamesAI.agents import Agent
@@ -89,6 +92,74 @@ Example LLM summarisation of full game:
 ```
 The Moroccan Crisis is underway, with France asserting its influence, Germany challenging that influence through diplomatic posturing and support from allies like Austria-Hungary. The United Kingdom, while  aligning with France due to the entente, is also focused on communication and mediation to avoid conflict escalation. The players are actively negotiating, seeking support, displaying military strength, and attempting to shape the international response to the crisis.  The ultimate outcome, whether Germany escalates or pursues diplomacy, remains uncertain.
 ```
+
+</details>
+
+# 🪖 Scenario: Cold War tensions during 1983
+This game focuses on the Cold War tensions during 1983, particularly surrounding NATO's Able Archer exercise and the Soviet Union's response. Players are split into two teams, each with a Military and an Economic Division. Actions taken by each division will shape the course of the game, with the Umpire controlling the flow of information. The game culminates in a final decision by the EAST Military Division on whether to escalate to nuclear conflict.
+
+<details>
+<summary>Code and LLM Summary</summary>
+
+```python
+from WargamesAI.coordination import Umpire, Game, GameRunner
+from WargamesAI.agents import Agent
+from pprint import pprint
+
+# Define the actions for the first round (information gathering)
+west_mil_1_turn = {"TEAM": "WEST", "PLAYER": "Military Division", "ACTIVITY": "Request intelligence on Soviet military activities and readiness."}
+west_ecom_1_turn = {"TEAM": "WEST", "PLAYER": "Economic Division", "ACTIVITY": "Analyze the economic stability of the Eastern Bloc and its implications on military strategy."}
+east_mil_1_turn = {"TEAM": "EAST", "PLAYER": "Military Division", "ACTIVITY": "Request intelligence on NATO military exercises and possible preparations for a nuclear strike."}
+east_ecom_1_turn = {"TEAM": "EAST", "PLAYER": "Economic Division", "ACTIVITY": "Assess the impact of Western economic policies and sanctions on the Soviet economy."}
+
+# Define the actions for the second round (escalation or de-escalation)
+west_mil_2_turn = {"TEAM": "WEST", "PLAYER": "Military Division", "ACTIVITY": "Conduct a military exercise or reinforce NATO positions to demonstrate strength."}
+west_ecom_2_turn = {"TEAM": "WEST", "PLAYER": "Economic Division", "ACTIVITY": "Implement or reinforce economic sanctions to pressure the Soviet Union."}
+east_mil_2_turn = {"TEAM": "EAST", "PLAYER": "Military Division", "ACTIVITY": "Increase military readiness or conduct a show of force to deter NATO."}
+east_ecom_2_turn = {"TEAM": "EAST", "PLAYER": "Economic Division", "ACTIVITY": "Strengthen economic ties with allies or redirect resources to support military spending."}
+
+# Combine the rounds
+round = [west_mil_1_turn, west_ecom_1_turn, east_mil_1_turn, east_ecom_1_turn, west_mil_2_turn, west_ecom_2_turn, east_mil_2_turn, east_ecom_2_turn]
+east_final_round = [{"TEAM": "EAST", "PLAYER": "Military Division", "ACTIVITY": "Decide if the situation warrants a preemptive strike or further escalation based on perceived threats from the WEST."}]
+
+# Create the game structure with 6 rounds, culminating in the final decision
+game_rounds = [round, round, round, round, round, east_final_round]
+
+# Define the game with rules focused on managing Cold War tensions and avoiding nuclear conflict
+game = Game(
+    rounds=game_rounds,
+    game_rules_text="This game focuses on the Cold War tensions during 1983, particularly surrounding NATO's Able Archer exercise and the Soviet Union's response. Players are split into two teams, each with a Military and an Economic Division. Actions taken by each division will shape the course of the game, with the Umpire controlling the flow of information. The game culminates in a final decision by the EAST Military Division on whether to escalate to nuclear conflict.",
+    rules_folder="./rules"
+)
+
+# Create agents for the game
+west_mil = Agent(game, deployment_directive="You are head of the WEST's Military Division, tasked with ensuring NATO's strength and deterring any potential Soviet aggression.", factions=["WEST"], beliefs=["The WEST must remain vigilant against Soviet threats"], disposition="stern", empathy="low", exercise_objectives=["To prevent Soviet miscalculations through shows of strength"], strategic_objectives=["To secure NATO's position without escalating to nuclear conflict", "Limit Soviet influence and aggression without appearing weak."], bio_folder="./bios")
+west_ecom = Agent(game, deployment_directive="You are head of the WEST's Economic Division, responsible for applying economic pressure on the Soviet Union to weaken their resolve.", factions=["WEST"], beliefs=["Economic strength is key to national security"], disposition="calm and strategic", empathy="medium", exercise_objectives=["To undermine the Soviet economy and reduce their capacity for conflict"], strategic_objectives=["To apply economic leverage while avoiding a full-scale conflict"], bio_folder="./bios")
+east_mil = Agent(game, deployment_directive="You are head of the EAST's Military Division, tasked with defending the Soviet Union from perceived NATO threats and ensuring national security.", factions=["EAST"], beliefs=["Never show weakness to NATO"], disposition="paranoid", empathy="low", exercise_objectives=["To deter NATO through military readiness and strategic posturing"], strategic_objectives=["To avoid nuclear conflict unless absolutely necessary", "Maintain Soviet security without yielding to NATO pressures."], bio_folder="./bios")
+east_ecom = Agent(game, deployment_directive="You are head of the EAST's Economic Division, responsible for sustaining the Soviet economy under the pressure of Western sanctions.", factions=["EAST"], beliefs=["Economic stability is crucial for military strength"], disposition="resilient", empathy="low", exercise_objectives=["To sustain the economy while ensuring resources for military needs"], strategic_objectives=["To resist Western economic pressures and maintain stability"], bio_folder="./bios")
+
+# Add the agents to their respective teams
+game.add_team("WEST", [{"Military Division": west_mil}, {"Economic Division": west_ecom}])
+game.add_team("EAST", [{"Military Division": east_mil}, {"Economic Division": east_ecom}])
+
+# Initialize the Umpire and GameRunner
+umpire = Umpire(game)
+runner = GameRunner(game, umpire)
+
+# Run the game rounds
+pprint(runner.run_all_rounds())
+
+# Produce the summary and determine the winner
+pprint(umpire.produce_summary())
+pprint(umpire.deduce_winner())
+```
+
+LLM Summarisation:
+```
+The Moroccan Crisis is underway, with France asserting its influence, Germany challenging that influence through diplomatic posturing and support from allies like Austria-Hungary. The United Kingdom, while  aligning with France due to the entente, is also focused on communication and mediation to avoid conflict escalation. The players are actively negotiating, seeking support, displaying military strength, and attempting to shape the international response to the crisis.
+```
+
+</details>
 
 # ⚙️ Setup
 Tomato required Nvidia CUDA. Follow the steps below:
