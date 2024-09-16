@@ -229,7 +229,7 @@ class EasyLLM:
 
         result = result.replace("json","")
         result = result.replace("\n"," ").replace("   ","  ").replace("  "," ").replace(" } ","}").replace(" {","{").strip()
-
+        print(result)
         try:
             return json.loads(result)
         except:
