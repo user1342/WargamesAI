@@ -54,7 +54,17 @@ AGENT_REQUIREMENT_SCHEMA = json.dumps([{
     "strategic_objectives": ["A list of long term objectives for this game or beyond"]
 }])
 
-LIST_OF_AGENTS_SCHEMA = json.dumps([f"A list of dictionaries that follow the format: {AGENT_REQUIREMENT_SCHEMA}"])
+LIST_OF_AGENTS_SCHEMA = json.dumps([{
+    "player_character_name":"The name of the player character",
+    "team":"The team the player character belongs to",
+    "deployment_directive": "What the player characters overall situation is",
+    "factions": ["A list of factions the player character belongs to"],
+    "beliefs": ["A list of beliefs the player character holds"],
+    "disposition": "Disposition of the player character",
+    "empathy": "The level of empathy the player character has",
+    "exercise_objectives": ["A list of short term objectives for this game"],
+    "strategic_objectives": ["A list of long term objectives for this game or beyond"]
+}])
 
 WIN_SCHEMA = json.dumps({"WINNING_TEAN":"The name of the winning team","WINNING_PLAYER":"None if a Team won, though, player name if a specific player in that team won."})
 

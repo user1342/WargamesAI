@@ -61,7 +61,7 @@ class StoryTeller:
 
         :return: A list of dictionaries representing the players.
         """
-        prompt = f"Populate the schema. \n\n Narrative: \n{self._narrative}. \n\nRules: \n{self._rules}"
+        prompt = f"Populate the schema with agents for players to play. \n\n Narrative: \n{self._narrative}. \n\nRules: \n{self._rules}"
 
         agents = self._llm.ask_question(
             self._llm.generate_json_prompt(json_schemas.MultipleAgentsModel, prompt)
