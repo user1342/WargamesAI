@@ -196,7 +196,15 @@ class Umpire:
             The player's response.
         """
         prompt = f"It is your turn in the game. {action}"
-        agent = self._game._teams[team][player]
+        
+        agent = None
+        for existing_player in self._game._teams[team]:
+            if player in existing_player:
+                agent = self._game._teams[team][player]
+
+        if agent is None:
+            raise Exception(f"Couldn't find player '{player}'")
+
         resp = agent.request_action(prompt)
 
         is_legal = self._check_legality_of_action(resp)
