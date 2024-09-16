@@ -156,8 +156,6 @@ print(f"Dice roll result: {dice_result}")
 cards = ["Sabotage", "Reinforcements", "Diplomatic Pressure"]
 drawn_cards = umpire.pick_card(number=2)  # Drawing two cards from the deck
 print(f"Drawn cards: {drawn_cards}")
-Using PDF Bios and PDF Rules
-WargamesAI allows you to import bios and rules from PDFs, making it easier to manage detailed information about agents and game settings.
 ```
 
 ## 🤖 Models
@@ -170,7 +168,6 @@ At current, the following models have been tested with WargamesAI:
 - unsloth/Phi-3-medium-4k-instruct-bnb-4bit
 - unsloth/Qwen2-7B-Instruct-bnb-4bit
 - unsloth/Phi-3.5-mini-instruct-bnb-4bit
-- unsloth/Qwen2-Math-7B-Instruct
 
 # 🙏 Contributions
 WargamesAI is an open-source project and welcomes contributions from the community. If you would like to contribute to WargamesAI, please follow these guidelines:

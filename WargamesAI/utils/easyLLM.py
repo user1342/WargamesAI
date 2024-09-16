@@ -54,72 +54,78 @@ class EasyLLM:
         self.dialogue: List[dict] = []
 
         self._device: str = "cuda"
-        self.model, self.tokenizer = self._load_model(self.model_name)
+        self.model = None
+        self.tokenizer = None
 
-    def set_to_eval(self) -> None:
+    def _load_model(self) -> Tuple[AutoModelForCausalLM, AutoTokenizer]:
         """
-        Sets the model to evaluation mode, which is necessary for generating responses.
-        """
-        self.model.eval()
-
-    def _load_model(self, model_name: str) -> Tuple[AutoModelForCausalLM, AutoTokenizer]:
-        """
-        Loads the pretrained language model and tokenizer.
-
-        Args:
-            model_name (str): Name of the pretrained model.
+        Loads the pretrained language model and tokenizer only when needed.
 
         Returns:
             Tuple[AutoModelForCausalLM, AutoTokenizer]: Loaded language model and tokenizer.
         """
-        is_4bit = '4bit' in model_name.lower()
-        is_8bit = '8bit' in model_name.lower()
+        if self.model is None or self.tokenizer is None:
+            is_4bit = '4bit' in self.model_name.lower()
+            is_8bit = '8bit' in self.model_name.lower()
 
-        if is_4bit or is_8bit:
-            # Use BitsAndBytesConfig for quantized models
-            if is_4bit:
-                quantization_config = BitsAndBytesConfig(
-                    load_in_4bit=True,
-                    bnb_4bit_compute_dtype=torch.bfloat16,
-                    bnb_4bit_use_double_quant=True,
-                    bnb_4bit_quant_type='nf4',
+            if is_4bit or is_8bit:
+                # Use BitsAndBytesConfig for quantized models
+                if is_4bit:
+                    quantization_config = BitsAndBytesConfig(
+                        load_in_4bit=True,
+                        bnb_4bit_compute_dtype=torch.bfloat16,
+                        bnb_4bit_use_double_quant=True,
+                        bnb_4bit_quant_type='nf4',
+                    )
+                else:
+                    quantization_config = BitsAndBytesConfig(
+                        load_in_8bit=True,
+                        bnb_8bit_compute_dtype=torch.bfloat16,
+                    )
+
+                max_memory = {
+                    0: "13GiB",  # Adjust this value based on your GPU's available memory
+                    "cpu": "30GiB"  # Adjust based on your system's RAM
+                }
+
+                # Use device_map with max_memory to control layer placement
+                device_map = "auto"
+
+                self.model = AutoModelForCausalLM.from_pretrained(
+                    self.model_name,
+                    quantization_config=quantization_config,
+                    device_map=device_map,
+                    max_memory=max_memory,
+                    offload_folder="offload",  # Folder to offload weights if necessary
                 )
             else:
-                quantization_config = BitsAndBytesConfig(
-                    load_in_8bit=True,
-                    bnb_8bit_compute_dtype=torch.bfloat16,
+                # For non-quantized models
+                self.model = AutoModelForCausalLM.from_pretrained(
+                    self.model_name,
+                    torch_dtype=torch.bfloat16,
+                    device_map='auto',
                 )
 
-            max_memory = {
-                0: "13GiB",  # Adjust this value based on your GPU's available memory
-                "cpu": "30GiB"  # Adjust based on your system's RAM
-            }
+            self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, padding_side="left")
 
-            # Use device_map with max_memory to control layer placement
-            device_map = "auto"
+            # Ensure pad_token_id is set
+            if self.tokenizer.pad_token_id is None:
+                self.tokenizer.pad_token_id = self.tokenizer.eos_token_id or 0
 
-            model = AutoModelForCausalLM.from_pretrained(
-                model_name,
-                quantization_config=quantization_config,
-                device_map=device_map,
-                max_memory=max_memory,
-                offload_folder="offload",  # Folder to offload weights if necessary
-            )
-        else:
-            # For non-quantized models
-            model = AutoModelForCausalLM.from_pretrained(
-                model_name,
-                torch_dtype=torch.bfloat16,
-                device_map='auto',
-            )
+        return self.model, self.tokenizer
 
-        tokenizer = AutoTokenizer.from_pretrained(model_name, padding_side="left")
+    def _unload_model(self) -> None:
+        """
+        Unloads the model from GPU memory by deleting the model and tokenizer.
+        """
+        if self.model is not None:
+            del self.model
+            self.model = None
+            torch.cuda.empty_cache()
 
-        # Ensure pad_token_id is set
-        if tokenizer.pad_token_id is None:
-            tokenizer.pad_token_id = tokenizer.eos_token_id or 0
-
-        return model, tokenizer
+        if self.tokenizer is not None:
+            del self.tokenizer
+            self.tokenizer = None
 
     def _generate_dialogue_response(self, messages: List[dict]) -> str:
         """
@@ -131,8 +137,11 @@ class EasyLLM:
         Returns:
             str: Generated response from the language model.
         """
+        # Load model and tokenizer if not already loaded
+        self._load_model()
+        
         chat_template = getattr(self.tokenizer, 'chat_template', None)
-        if chat_template:
+        if (chat_template):
             # Use the chat template to prepare input
             input_data = self.tokenizer.apply_chat_template(
                 messages, tokenize=True, add_generation_prompt=True, return_tensors="pt"
@@ -164,8 +173,11 @@ class EasyLLM:
         # Extract only the newly generated tokens
         generated_tokens = generated_ids[:, input_ids.shape[-1]:]
         decoded = self.tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)[0]
-        return decoded.strip()
 
+        # Unload model after generation to free up GPU memory
+        self._unload_model()
+
+        return decoded.strip()
 
     def reset_dialogue(self) -> None:
         """
@@ -186,6 +198,9 @@ class EasyLLM:
         """
         if reset_dialogue:
             self.reset_dialogue()
+
+        # Load model and tokenizer if not already loaded
+        self._load_model()
 
         # Extract roles from the chat template
         chat_template = getattr(self.tokenizer, 'chat_template', None)
@@ -277,7 +292,6 @@ class EasyLLM:
             assistant_role = 'assistant'
 
         return {'user': user_role, 'assistant': assistant_role}
-
 
     def format_messages(self, messages: List[dict]) -> str:
         """

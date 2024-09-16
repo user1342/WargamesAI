@@ -242,10 +242,10 @@ class Umpire:
                 if target_player in teams[player_team]:
                     if teams[player_team][target_player]._is_human:
                         response = self.ask_human_player_for_action(required_action)
-                        return
+                        return response
                     else:
                         response = self._ask_player_for_action(player_team, target_player, required_action)
-                        return
+                        return response
             raise Exception (f"Agent/ player {target_player} of team {player_team} not found!")
         
 
