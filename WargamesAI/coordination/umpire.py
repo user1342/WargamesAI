@@ -200,7 +200,7 @@ class Umpire:
         agent = None
         for existing_player in self._game._teams[team]:
             if player in existing_player:
-                agent = self._game._teams[team][player]
+                agent = existing_player[player]
 
         if agent is None:
             raise Exception(f"Couldn't find player '{player}'")
