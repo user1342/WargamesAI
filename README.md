@@ -11,14 +11,14 @@ WargamesAI is a toolkit designed to help you quickly create and run, test, and p
 - **Scalable Games:** Run large-scale wargames with dozens or even hundreds of AI agents, enabling you to explore scenarios that would be impractical with human players.
 - **AI-Driven Play:** Let AI agents in silo or alongside human players interact with the Umpire to facilitate the wargame. 
 
-WargamesAI uses Large Language Models (LLMs) to simulate reasoning and decision-making for your agents. These models generate responses and actions based on the scenarios you create, providing realistic and dynamic gameplay. WargamesAI key features, include:
+WargamesAI utilises Large Language Models (LLMs) to replicate reasoning and decision-making processes for your agents. These models generate responses and actions tailored to the scenarios you design, delivering realistic and dynamic gameplay. Key features of WargamesAI include:
 
-- LLM facilitates Umpiring.
-- LLM or Human players.
-- Automatic generation of games, scenarios, rules, rounds, and players using LLMs.
-- LLM-guided game summarisation.
-- Dice and Card integration.
-- Extraction of LLM agent personalities from text or PDFs.
+- Umpiring supported by LLMs.
+- Playable by either LLMs or human participants.
+- Automated creation of games, scenarios, rules, rounds, and players using LLMs.
+- Game summarisation guided by LLMs.
+- Integration of dice and card mechanics.
+- Extraction of LLM agent personalities from text or PDF documents.
 
 # 🧠 LLM Reasoning
 LLMs reason by predicting the most probable next word in a sequence based on the context provided. They use transformer architectures with attention mechanisms to capture relationships between words and phrases across long text sequences. This allows them to generate responses that follow logical and grammatical structures similar to human language use. While their outputs can mimic human reasoning patterns—such as drawing inferences, answering questions, or providing explanations—they do so without genuine comprehension or awareness. Their "reasoning" is a result of pattern recognition and statistical associations formed during training on large datasets, rather than conscious thought processes. 
