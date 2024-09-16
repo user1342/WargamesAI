@@ -276,7 +276,7 @@ class Umpire:
         final_responses = [response]
 
         if "TARGETS" in response:
-            if response["TARGETS"] == "Umpire":
+            if "Umpire" in response["TARGETS"]:
                 umpire_turn = self._check_response(player_team, target_player, required_action, response)
                 final_responses.extend(self.engage_turn(umpire_turn))
                 print(f"Umpire turn: {umpire_turn}")
