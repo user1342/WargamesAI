@@ -156,8 +156,7 @@ pprint(umpire.deduce_winner())
 
 LLM Summarisation:
 ```
-The Moroccan Crisis is underway, with France asserting its influence, Germany challenging that influence through diplomatic posturing and support from allies like Austria-Hungary. The United Kingdom, while  aligning with France due to the entente, is also focused on communication and mediation to avoid conflict escalation. The players are actively negotiating, seeking support, displaying military strength, and attempting to shape the international response to the crisis.
-```
+The game has seen several key actions taken by both the WEST and EAST sides: the WEST has focused on gathering intelligence, analyzing the economic stability of the Eastern Bloc, and implementing economic sanctions while reinforcing NATO positions, increasing military readiness, and conducting naval exercises; the EAST has responded with similar actions, including deploying additional air defense missiles, increasing trade with Warsaw Pact allies, and implementing public propaganda campaigns.
 
 </details>
 
