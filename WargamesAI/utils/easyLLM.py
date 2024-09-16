@@ -21,9 +21,7 @@ hf_logging.set_verbosity_error()
 UNSLOTH_MODELS = ["unsloth/Llama-3.1-Storm-8B-bnb-4bit",
                   "unsloth/mistral-7b-instruct-v0.3",
                   "unsloth/llama-3-8b-Instruct-bnb-4bit",
-                  "unsloth/gemma-2-9b-it-bnb-4bit",
-                  "unsloth/Phi-3-mini-4k-instruct-bnb-4bit",
-                  "unsloth/Phi-3-medium-4k-instruct-bnb-4bit"]
+                  "unsloth/gemma-2-9b-it-bnb-4bit"]
 
 class EasyLLM:
     """
