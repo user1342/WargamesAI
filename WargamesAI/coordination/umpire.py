@@ -244,7 +244,6 @@ class Umpire:
             response = self._perform_umpire_action(required_action)
 
         else:
-            print(f"'{player_team}'-'{target_player}'")
             teams = self._game._teams
             if player_team in teams:
                 for existing_player in teams[player_team]:
@@ -280,7 +279,7 @@ class Umpire:
             if response["TARGETS"] == "Umpire":
                 umpire_turn = self._check_response(player_team, target_player, required_action, response)
                 final_responses.extend(self.engage_turn(umpire_turn))
-                print(umpire_turn)
+                print(f"Umpire turn: {umpire_turn}")
 
         return final_responses
 

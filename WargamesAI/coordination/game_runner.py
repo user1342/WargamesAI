@@ -56,8 +56,6 @@ class GameRunner:
             current_round = rounds[round_index]
             round_results = {}
 
-            print(current_round)
-
             for turn_index, turn in enumerate(current_round):
                 team = turn.get("TEAM", "Unknown Team")
                 player = turn.get("PLAYER", "Unknown Player")
