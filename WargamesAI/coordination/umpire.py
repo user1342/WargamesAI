@@ -246,13 +246,9 @@ class Umpire:
         else:
             print(f"'{player_team}'-'{target_player}'")
             teams = self._game._teams
-            print(teams)
             if player_team in teams:
-                print("found team")
-                print(teams[player_team])
                 for existing_player in teams[player_team]:
                     if target_player in existing_player:
-                        print("found player")
                         if existing_player[target_player]._is_human:
                             response = self.ask_human_player_for_action(required_action)
                             return response
