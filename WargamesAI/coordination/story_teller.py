@@ -17,7 +17,7 @@ class StoryTeller:
 
         :param narrative: Optional string to define the theme of the game narrative.
         """
-        self._llm = EasyLLM(max_new_tokens=5000)
+        self._llm = EasyLLM(max_new_tokens=10000)
         self._narrative = self._create_narrative(narrative)
         self._rules = self._create_game_rules()
         self._players = self._create_players()
