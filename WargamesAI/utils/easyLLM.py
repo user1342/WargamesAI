@@ -230,7 +230,7 @@ class EasyLLM:
         if reset_dialogue:
             self.reset_dialogue()
 
-        result = result.strip("\n").strip().replace("{ ","{").replace(" }","}").replace("   ","  ").replace("  "," ")
+        result = result.strip("\n").strip().strip("'").replace("{ ","{").replace(" }","}").replace("   ","  ").replace("  "," ")
 
         print(result)
         try:
