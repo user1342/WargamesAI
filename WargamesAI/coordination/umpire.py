@@ -242,14 +242,15 @@ class Umpire:
             if player_team in teams:
                 print("found team")
                 print(teams[player_team])
-                if target_player in list(teams[player_team].keys()):
-                    print("found player")
-                    if teams[player_team][target_player]._is_human:
-                        response = self.ask_human_player_for_action(required_action)
-                        return response
-                    else:
-                        response = self._ask_player_for_action(player_team, target_player, required_action)
-                        return response
+                for existing_player in teams[player_team]:
+                    if target_player in existing_player:
+                        print("found player")
+                        if teams[player_team][target_player]._is_human:
+                            response = self.ask_human_player_for_action(required_action)
+                            return response
+                        else:
+                            response = self._ask_player_for_action(player_team, target_player, required_action)
+                            return response
             raise Exception (f"Agent/ player {target_player} of team {player_team} not found!")
         
 
