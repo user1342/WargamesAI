@@ -6,7 +6,7 @@ with open('requirements.txt', 'r') as f:
 
 setup(
     name="WargamesAI",  # Name of the tool/package
-    version="0.4.8",  # Current version
+    version="0.4.9",  # Current version
     url="https://github.com/user1342/WargamesAI",
     packages=find_packages(),  # Automatically find package directories
     classifiers=[
