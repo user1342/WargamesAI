@@ -37,7 +37,7 @@ class Umpire:
         game_rules = self._game._game_rules_text
         initial_prompt = self.llm.generate_json_prompt(
             json_schemas.DefaultModel,
-            f"You are an umpire/game master of the game with the following rules. Be ready to facilitate the game. Respond acknowledging this\n\n"
+            f"You are an umpire/game master of the game with the following rules. Respond True acknowledging this. \n Game Rules: \n\n"
             f"Game Rules:\n'{game_rules}'",
         )
         self.llm.ask_question(initial_prompt)
