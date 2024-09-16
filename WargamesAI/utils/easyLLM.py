@@ -226,6 +226,8 @@ class EasyLLM:
         if reset_dialogue:
             self.reset_dialogue()
 
+
+        result = result.replace("json","")
         print(result)
         try:
             return json.loads(result)
