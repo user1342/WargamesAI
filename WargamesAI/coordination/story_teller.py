@@ -8,7 +8,7 @@ from WargamesAI.utils import json_schemas
 class StoryTeller():
     
     def __init__(self, narrative=None) -> None:
-        self._llm = EasyLLM()
+        self._llm = EasyLLM(max_new_tokens=5000)
         self._narrative = self._create_narrative(narrative)
         self._rules = self._create_game_rules()
         self._players = self._create_players()
