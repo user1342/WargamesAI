@@ -274,10 +274,10 @@ class Umpire:
         #            raise ValueError(f"Invalid modifier: {modifier} in resource: {resource}.")
 
         final_responses = [response]
-        #further_actions = self._check_response(player_team, target_player, required_action, response)
-        #if isinstance(further_actions, list):
-        #    for action in further_actions:
-        #        final_responses.extend(self.engage_turn(action))
+        further_actions = self._check_response(player_team, target_player, required_action, response)
+        if isinstance(further_actions, list):
+            for action in further_actions:
+                final_responses.extend(self.engage_turn(action))
 
         return final_responses
 
