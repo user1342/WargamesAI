@@ -273,11 +273,13 @@ class Umpire:
         #        else:
         #            raise ValueError(f"Invalid modifier: {modifier} in resource: {resource}.")
 
+
         final_responses = [response]
-        further_actions = self._check_response(player_team, target_player, required_action, response)
-        if isinstance(further_actions, list):
-            for action in further_actions:
-                final_responses.extend(self.engage_turn(action))
+
+        if "TARGETS" in response:
+            if response["TARGETS"] == "Umpire":
+                umpire_turn = self._check_response(player_team, target_player, required_action, response)
+                final_responses.extend(self.engage_turn(umpire_turn))
 
         return final_responses
 
@@ -296,7 +298,7 @@ class Umpire:
         """
         query = (
             f"The player '{player}' of team '{team}' was asked to perform the following: '{action}'. "
-            f"They responded with '{response}'. In line with the game rules, are there any follow-on actions required?"
+            f"They responded with '{response}'. And asked for your facilitation. What turn would you like to perform?"
         )
         further_actions = self.llm.ask_question(
             self.llm.generate_json_prompt(json_schemas.TurnModel, query)
