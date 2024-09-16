@@ -23,8 +23,7 @@ UNSLOTH_MODELS = ["unsloth/Llama-3.1-Storm-8B-bnb-4bit",
                   "unsloth/llama-3-8b-Instruct-bnb-4bit",
                   "unsloth/gemma-2-9b-it-bnb-4bit",
                   "unsloth/Phi-3-mini-4k-instruct-bnb-4bit",
-                  "unsloth/Phi-3-medium-4k-instruct-bnb-4bit",
-                  "unsloth/Phi-3.5-mini-instruct-bnb-4bit"]
+                  "unsloth/Phi-3-medium-4k-instruct-bnb-4bit"]
 
 class EasyLLM:
     """
