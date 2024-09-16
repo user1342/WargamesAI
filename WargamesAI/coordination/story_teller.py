@@ -17,7 +17,7 @@ class StoryTeller:
 
         :param narrative: Optional string to define the theme of the game narrative.
         """
-        self._llm = EasyLLM(max_new_tokens=10000)
+        self._llm = EasyLLM(max_new_tokens=5000)
         self._narrative = self._create_narrative(narrative)
         self._rules = self._create_game_rules()
         self._players = self._create_players()
@@ -61,7 +61,7 @@ class StoryTeller:
 
         :return: A list of dictionaries representing the players.
         """
-        prompt = f"Based on the following professional wargame matrix game narrative and rules, create a list of player characters for the game. Narrative: {self._narrative}. Rules: {self._rules}"
+        prompt = f"Create a list of agents for the game. These are what players will be playing. Narrative: {self._narrative}. Rules: {self._rules}"
 
         agents = self._llm.ask_question(
             self._llm.generate_json_prompt(json_schemas.MultipleAgentsModel, prompt)
