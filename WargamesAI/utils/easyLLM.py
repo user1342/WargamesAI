@@ -228,7 +228,7 @@ class EasyLLM:
 
 
         result = result.replace("json","")
-        result = result.replace("\n"," ")
+        result = result.replace("\n"," ").replace("   ","  ").replace("  "," ").replace(" } ","}").replace(" {","{").strip()
 
         try:
             return json.loads(result)
