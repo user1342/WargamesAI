@@ -242,7 +242,7 @@ class Umpire:
             if player_team in teams:
                 print("found team")
                 print(teams[player_team])
-                if target_player in teams[player_team]:
+                if target_player in list(teams[player_team].keys()):
                     print("found player")
                     if teams[player_team][target_player]._is_human:
                         response = self.ask_human_player_for_action(required_action)
