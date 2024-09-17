@@ -4,7 +4,7 @@
 </p>
 <p align="center"> 🤖 Professional Wargaming LLM Toolbox🎲 </p>
 
-WargamesAI is a toolkit designed to help you quickly create and run, test, and play wargames using Large Language Model agents. WargamesAI utilises Large Language Models (LLMs) to replicate reasoning and decision-making processes for your agents. These models generate responses and actions tailored to the scenarios you design, delivering realistic and dynamic gameplay. Key features of WargamesAI include:
+WargamesAI is a toolkit designed to help you quickly create and run, test, and play wargames using Large Language Model agents. WargamesAI utilises Large Language Models (LLMs) to replicate reasoning and decision-making process. These models generate responses and actions tailored to the scenarios you design, delivering realistic and dynamic gameplay. Key features of WargamesAI include:
 
 - Umpiring supported by LLMs.
 - Playable by either LLMs or human participants.
