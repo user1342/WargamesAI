@@ -153,7 +153,7 @@ The game has seen several key actions taken by both the WEST and EAST sides: the
 </details>
 
 # ⚙️ Setup
-Tomato required Nvidia CUDA. Follow the steps below:
+WargamesAI requires Nvidia CUDA. Follow the steps below:
 - Ensure your Nvidia drivers are up to date: https://www.nvidia.com/en-us/geforce/drivers/
 - Install the appropriate dependancies from here: https://pytorch.org/get-started/locally/
 - Validate CUDA is installed correctly by running the following and being returned a prompt ```python -c "import torch; print(torch.rand(2,3).cuda())"```
