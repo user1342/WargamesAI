@@ -193,8 +193,6 @@ pdf_rules_game = Game(
     game_rules_pdf="path/to/rules.pdf",
     teams={"Polar Alliance": polar_alliance_agents, "Arctic Consortium": arctic_consortium_agents}
 )
-Changing the Model Used for Agents and Umpire
-WargamesAI allows you to customize the AI models used by your agents and umpire. You might want to change the model to fit different scenarios or performance needs.
 
 ```
 
