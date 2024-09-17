@@ -223,21 +223,6 @@ custom_model_umpire = Umpire(
 )
 ```
 
-## Rolling Dice [Experimental]
-```python
-# Example: Rolling Dice
-dice_result = umpire.roll_dice(highest=6, times=2)  # Rolling two 6-sided dice
-print(f"Dice roll result: {dice_result}")
-```
-
-## Drawing Cards [Experimental]
-```python
-# Example: Drawing Cards
-cards = ["Sabotage", "Reinforcements", "Diplomatic Pressure"]
-drawn_cards = umpire.pick_card(number=2)  # Drawing two cards from the deck
-print(f"Drawn cards: {drawn_cards}")
-```
-
 ## 🤖 Models
 At current, the following models have been tested with WargamesAI:
 - unsloth/Llama-3.1-Storm-8B-bnb-4bit
