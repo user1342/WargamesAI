@@ -184,7 +184,7 @@ class Umpire:
         self.actions.append(response)
         return response
 
-    def _ask_player_for_action(self, team, player, action,extra_info+""):
+    def _ask_player_for_action(self, team, player, action,extra_info=""):
         """
         Asks an AI player for their action.
 
