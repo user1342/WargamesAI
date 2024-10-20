@@ -148,7 +148,7 @@ class Umpire:
         self.actions.append(resp)
         return resp
 
-    def ask_human_player_for_action(self, action):
+    def ask_human_player_for_action(self, action, extra_info = ""):
         """
         Asks a human player for their action.
 
@@ -161,6 +161,7 @@ class Umpire:
         prompt = (
             f"It is your turn in the game. You are being presented with this action: '{action}'. "
             f"Return your response in the following format: '{json_schemas.ACTION_RESPONSE_JSON_SCHEMA}'"
+            f"{extra_info}"
         )
         response = input(prompt)
 
@@ -183,7 +184,7 @@ class Umpire:
         self.actions.append(response)
         return response
 
-    def _ask_player_for_action(self, team, player, action):
+    def _ask_player_for_action(self, team, player, action,extra_info+""):
         """
         Asks an AI player for their action.
 
@@ -195,7 +196,7 @@ class Umpire:
         Returns:
             The player's response.
         """
-        prompt = f"It is your turn in the game. {action}"
+        prompt = f"It is your turn in the game. {action} {extra_info)"
         
         agent = None
         for existing_player in self._game._teams[team]:
@@ -226,7 +227,7 @@ class Umpire:
         self.actions.append(resp)
         return resp
 
-    def engage_turn(self, turn):
+    def engage_turn(self, turn, extra_info = ""):
         """
         Engages a turn in the game.
 
@@ -249,10 +250,10 @@ class Umpire:
                 for existing_player in teams[player_team]:
                     if target_player in existing_player:
                         if existing_player[target_player]._is_human:
-                            response = self.ask_human_player_for_action(required_action)
+                            response = self.ask_human_player_for_action(required_action, extra_info)
                             return response
                         else:
-                            response = self._ask_player_for_action(player_team, target_player, required_action)
+                            response = self._ask_player_for_action(player_team, target_player, required_action, extra_info)
                             return response
             raise Exception (f"Agent/ player {target_player} of team {player_team} not found!")
         
