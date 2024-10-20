@@ -196,7 +196,7 @@ class Umpire:
         Returns:
             The player's response.
         """
-        prompt = f"It is your turn in the game. {action} {extra_info)"
+        prompt = f"It is your turn in the game. {action} {extra_info}"
         
         agent = None
         for existing_player in self._game._teams[team]:
