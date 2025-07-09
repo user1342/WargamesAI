@@ -162,5 +162,4 @@ class EasyRAG:
             answer = self.generation_pipeline(prompt)
             return answer[0]["generated_text"]
         except Exception as e:
-            raise Exception(f"An error occurred during text generation: {e}")
-            return "Unable to generate an answer at this time."
+            return f"Unable to generate an answer at this time: {e}"
